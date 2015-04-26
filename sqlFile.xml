@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="MyBatisSample" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+  <alias>
+    <typeAlias alias="EmpDto" type="MyBatisSample.EmpDto,MyBatisSample"/>
+
+    <typeAlias alias="EmpSearchBean" type="MyBatisSample.EmpSearchBean,MyBatisSample"/>
+  </alias>
+
+
+  
+  <resultMaps>
+    <resultMap id="empMap" class="EmpDto">
+      <result property="empNo" column="empno"/>
+      <result property="empName" column="ename"/>
+    </resultMap>
+  </resultMaps>
+
+
+  
+  <statements>
+
+    <select id="searchEmp" parameterClass="EmpSearchBean" resultMap="empMap">
+      SELECT empno, ename FROM emptab
+      <dynamic prepend="WHERE">
+        <isNotNull prepend="AND" property="empNo">
+          empno = #empNo#
+        </isNotNull>
+        <isNotNull prepend="AND" property="empName">
+          ename = #empName#
+        </isNotNull>
+      </dynamic>
+
+      order by ename asc
+
+    </select>
+
+  </statements>
+</sqlMap>
