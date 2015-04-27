@@ -3,7 +3,7 @@ a simple mybatisnet sample
 
 #database
 version:oracle 11g Oracle Database Express Edition 11g Release 2  
-connection string:Data Source=xe;User Id=system;Password=test
+connection string:Data Source=xe;User Id=system;Password=test (edit SqlMap.config to change)  
 
 #DDL
 DROP TABLE emptab;   
